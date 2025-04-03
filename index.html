@@ -31,17 +31,17 @@
             padding: 0;
         }
         nav ul li {
-            display: incline;
+            display: inline;
             margin: 0 20px;
         }
         nav a {
-            color: #FFD700;
+            color: white;
             text-decoration: none;
             font-weight: bold;
             transition: 0.3s;
         }
         nav a:hover {
-            color: #FFA500;
+            color: #f39c12;
         }
         section {
             background: rgba(0, 0, 0, 0.7);
@@ -51,7 +51,7 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
         }
         h1, h2 {
-            color: #FFD700;
+            color: white;
         }
         ul {
             list-style: none;
@@ -64,7 +64,7 @@
         i {
             margin-right: 10px;
             font-size: 24px;
-            color: #F1C40F;
+            color: #f1c40f;
         }
         .slider {
             position: relative;
@@ -94,6 +94,40 @@
         }
         .prev { left: 10px; }
         .next { right: 10px; }
+
+        /* Slider Box for Projects */
+        .project-slider {
+            position: relative;
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            max-width: 600px;
+        }
+        .project-slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .project-slide {
+            min-width: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .project-navigation {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+        .project-navigation button {
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 50%;
+        }
     </style>
 </head>
 <body>
@@ -108,7 +142,7 @@
             <li><a href="#skills">Skills</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#contact">Contact</a></li>
-            <li><a href="#Address">Address</a></li>
+            <li><a href="#Address">Contact</a></li>
         </ul>
     </nav>
     
@@ -117,39 +151,29 @@
         <p>Hello! I'm Narendra, a passionate QA Engineer specializing in automation testing and performance testing.</p>
     </section>
     
-    <section id="skills">
-        <h2>Skills</h2>
-        <ul>
-            <li><i class="fas fa-bug"></i> Manual & Automation Testing</li>
-            <li><i class="fab fa-java"></i> Java, C#, SpecFlow</li>
-            <li><i class="fas fa-tachometer-alt"></i> Performance Testing (JMeter)</li>
-            <li><i class="fas fa-cogs"></i> Test Frameworks & CI/CD</li>
-        </ul>
-    </section>
-    
     <section id="projects">
         <h2>Projects</h2>
-        <ul>
-            <li>Automated Testing Framework for Classroom Module</li>
-            <li>Performance Testing for Web Applications</li>
-        </ul>
-    </section>
-      
-    <section id="contact">
-        <h2>Contact Me</h2>
-        <p>Email: narendrachodipalli@gmail.com</p>
-        <p>LinkedIn: <a href="https://www.linkedin.com/in/narendrachodipalli" target="_blank">Profile</a></p>
+        <div class="project-slider">
+            <div class="project-slides">
+                <div class="project-slide">Automated Testing Framework for Classroom Module</div>
+                <div class="project-slide">Performance Testing for Web Applications</div>
+            </div>
+            <div class="project-navigation">
+                <button onclick="moveProjectSlide(-1)">&#10094;</button>
+                <button onclick="moveProjectSlide(1)">&#10095;</button>
+            </div>
+        </div>
     </section>
     
     <script>
-        let slideIndex = 0;
-        function moveSlide(step) {
-            const slides = document.querySelector('.slides');
+        let projectIndex = 0;
+        function moveProjectSlide(step) {
+            const slides = document.querySelector('.project-slides');
             const totalSlides = slides.children.length;
-            slideIndex = (slideIndex + step + totalSlides) % totalSlides;
-            slides.style.transform = `translateX(-${slideIndex * 100}%)`;
+            projectIndex = (projectIndex + step + totalSlides) % totalSlides;
+            slides.style.transform = `translateX(-${projectIndex * 100}%)`;
         }
-        setInterval(() => moveSlide(1), 3000); // Auto-slide every 3 seconds
+        setInterval(() => moveProjectSlide(1), 3000); // Auto-slide every 3 seconds
     </script>
 </body>
 </html>
