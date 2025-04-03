@@ -7,22 +7,47 @@
     <link rel="stylesheet" href="styles.css">
     <style>
         body {
-            background: url('https://www.keenesystems.com/hubfs/blog-images/web-application-software-upgrade.jpg') repeat-x;
-            background-size: cover;
             color: white;
             font-family: Arial, sans-serif;
             text-align: center;
             margin: 0;
             padding: 0;
-            animation: moveBackground 20s linear infinite;
+            overflow: hidden;
         }
         
-        @keyframes moveBackground {
-            from { background-position: 0 0; }
-            to { background-position: -2000px 0; }
+        .slider-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
         }
-
+        
+        .slider {
+            display: flex;
+            width: 300%;
+            height: 100%;
+            animation: slide 12s infinite;
+        }
+        
+        .slide {
+            width: 100%;
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        @keyframes slide {
+            0% { transform: translateX(0); }
+            33% { transform: translateX(-100%); }
+            66% { transform: translateX(-200%); }
+            100% { transform: translateX(0); }
+        }
+        
         nav {
+            position: relative;
+            z-index: 10;
             background: rgba(0, 0, 0, 0.8);
             padding: 15px 0;
         }
@@ -43,94 +68,27 @@
         nav a:hover {
             color: #f39c12;
         }
+        
         section {
+            position: relative;
+            z-index: 10;
             background: rgba(0, 0, 0, 0.7);
             padding: 20px;
             margin: 20px;
             border-radius: 15px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
         }
-        h1, h2 {
-            color: white;
-        }
-        ul {
-            list-style: none;
-            padding: 0;
-        }
-        ul li {
-            font-size: 22px;
-            margin: 15px 0;
-        }
-        i {
-            margin-right: 10px;
-            font-size: 24px;
-            color: #f1c40f;
-        }
-        .slider {
-            position: relative;
-            width: 80%;
-            margin: auto;
-            overflow: hidden;
-            max-width: 600px;
-        }
-        .slides {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-        }
-        .slides img {
-            width: 100%;
-            border-radius: 10px;
-        }
-        .prev, .next {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-            border-radius: 50%;
-        }
-        .prev { left: 10px; }
-        .next { right: 10px; }
-
-        /* Slider Box for Projects */
-        .project-slider {
-            position: relative;
-            width: 80%;
-            margin: auto;
-            overflow: hidden;
-            max-width: 600px;
-        }
-        .project-slides {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-        }
-        .project-slide {
-            min-width: 100%;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 20px;
-            border-radius: 10px;
-        }
-        .project-navigation {
-            position: absolute;
-            top: 50%;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-        }
-        .project-navigation button {
-            background: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-            border-radius: 50%;
-        }
     </style>
 </head>
 <body>
+    <div class="slider-container">
+        <div class="slider">
+            <div class="slide" style="background-image: url('https://www.keenesystems.com/hubfs/blog-images/web-application-software-upgrade.jpg');"></div>
+            <div class="slide" style="background-image: url('https://www.ranorex.com/blog/best-bug-tracking-tools/');"></div>
+            <div class="slide" style="background-image: url('https://www.theiceway.com/hubfs/Why%20is%20Software%20Testing%20So%20Important.jpg');"></div>
+        </div>
+    </div>
+
     <header>
         <h1 style="font-size: 40px;">Narendra Chodipalli</h1>
         <p style="font-size: 20px;">QA Engineer | Automation Tester | Tech Enthusiast</p>
@@ -142,7 +100,6 @@
             <li><a href="#skills">Skills</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#contact">Contact</a></li>
-            <li><a href="#Address">Contact</a></li>
         </ul>
     </nav>
     
@@ -150,30 +107,21 @@
         <h2>About Me</h2>
         <p>Hello! I'm Narendra, a passionate QA Engineer specializing in automation testing and performance testing.</p>
     </section>
-    
-    <section id="projects">
-        <h2>Projects</h2>
-        <div class="project-slider">
-            <div class="project-slides">
-                <div class="project-slide">Automated Testing Framework for Classroom Module</div>
-                <div class="project-slide">Performance Testing for Web Applications</div>
-            </div>
-            <div class="project-navigation">
-                <button onclick="moveProjectSlide(-1)">&#10094;</button>
-                <button onclick="moveProjectSlide(1)">&#10095;</button>
-            </div>
-        </div>
+
+    <section id="skills">
+        <h2>Skills</h2>
+        <ul>
+            <li><i class="fa fa-code"></i> Automation Testing</li>
+            <li><i class="fa fa-bug"></i> Manual Testing</li>
+            <li><i class="fa fa-database"></i> SQL</li>
+            <li><i class="fa fa-clock"></i> Performance Testing (JMeter)</li>
+        </ul>
     </section>
-    
-    <script>
-        let projectIndex = 0;
-        function moveProjectSlide(step) {
-            const slides = document.querySelector('.project-slides');
-            const totalSlides = slides.children.length;
-            projectIndex = (projectIndex + step + totalSlides) % totalSlides;
-            slides.style.transform = `translateX(-${projectIndex * 100}%)`;
-        }
-        setInterval(() => moveProjectSlide(1), 3000); // Auto-slide every 3 seconds
-    </script>
+
+    <section id="contact">
+        <h2>Contact</h2>
+        <p>Email: narendrachodipalli@gmail.com</p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/in/narendra-chodipalli" style="color: #f39c12;">linkedin.com/in/narendra-chodipalli</a></p>
+    </section>
 </body>
 </html>
