@@ -25,24 +25,34 @@
         }
         
         .slider {
-            display: flex;
-            width: 300%;
+            position: absolute;
+            width: 100%;
             height: 100%;
-            animation: slide 12s infinite;
         }
         
         .slide {
+            position: absolute;
             width: 100%;
             height: 100vh;
             background-size: cover;
             background-position: center;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
         }
         
-        @keyframes slide {
-            0% { transform: translateX(0); }
-            33% { transform: translateX(-100%); }
-            66% { transform: translateX(-200%); }
-            100% { transform: translateX(0); }
+        .slide.active {
+            opacity: 1;
+        }
+        
+        header {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            margin-top: 50px;
+            color: white;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 10px;
         }
         
         nav {
@@ -83,7 +93,7 @@
 <body>
     <div class="slider-container">
         <div class="slider">
-            <div class="slide" style="background-image: url('https://www.keenesystems.com/hubfs/blog-images/web-application-software-upgrade.jpg');"></div>
+            <div class="slide active" style="background-image: url('https://www.keenesystems.com/hubfs/blog-images/web-application-software-upgrade.jpg');"></div>
             <div class="slide" style="background-image: url('https://www.ranorex.com/blog/best-bug-tracking-tools/');"></div>
             <div class="slide" style="background-image: url('https://www.theiceway.com/hubfs/Why%20is%20Software%20Testing%20So%20Important.jpg');"></div>
         </div>
@@ -123,5 +133,18 @@
         <p>Email: narendrachodipalli@gmail.com</p>
         <p>LinkedIn: <a href="https://www.linkedin.com/in/narendra-chodipalli" style="color: #f39c12;">linkedin.com/in/narendra-chodipalli</a></p>
     </section>
+
+    <script>
+        let slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+        
+        function changeSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+        
+        setInterval(changeSlide, 4000);
+    </script>
 </body>
 </html>
