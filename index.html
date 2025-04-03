@@ -46,7 +46,7 @@
         }
         
         header {
-            position: fixed;
+            position: static;
             top: 0;
             left: 0;
             width: 100%;
@@ -58,8 +58,8 @@
         }
         
         nav {
-            position: fixed;
-            top: 50px; /* Adjusted to appear below header */
+            position: static;
+            top: 150px; /* Adjusted to appear below header */
             width: 100%;
             z-index: 10;
             background: rgba(0, 0, 0, 0.8);
@@ -72,7 +72,7 @@
         }
         nav ul li {
             display: inline;
-            margin: 0 15px;
+            margin: 0 100px;
         }
         nav a {
             color: white;
@@ -85,14 +85,14 @@
         }
         
         main {
-            margin-top: 140px; /* Adjusted to prevent overlap */
-            padding: 20px;
+            margin-top: 20px; /* Adjusted to prevent overlap */
+            padding: 10px;
         }
         
         section {
             background: rgba(0, 0, 0, 0.7);
             padding: 20px;
-            margin: 20px auto;
+            margin: 40px auto;
             border-radius: 15px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
             max-width: 800px;
@@ -135,6 +135,16 @@
                 <li><i class="fa fa-bug"></i> Manual Testing</li>
                 <li><i class="fa fa-database"></i> SQL</li>
                 <li><i class="fa fa-clock"></i> Performance Testing (JMeter)</li>
+            </ul>
+        </section>
+
+        <section id="projects">
+            <h2>Projects</h2>
+            <p>Here are some of the projects I have worked on:</p>
+            <ul>
+                <li>Automated Testing Framework for Classroom Module using Python & Selene</li>
+                <li>Performance Testing for High-Traffic Web Application using JMeter</li>
+                <li>End-to-End Regression Testing for Service Orders Module</li>
             </ul>
         </section>
     
